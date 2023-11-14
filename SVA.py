@@ -26,8 +26,12 @@ def take_command():
             if 'alexa' in command:
                 command = command.replace('alexa', '')
                 print(command)
-    except:
-        pass
+    except sr.UnknownValueError:
+        print("Sorry, I did not get that. Please repeat.")
+        return ""
+    except sr.RequestError as e:
+        print(f"Could not request results from Google Speech Recognition service; {e}")
+        return ""
     return command
 
 

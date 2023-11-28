@@ -1,4 +1,5 @@
 import speech_recognition as sr
+from googletrans import Translator
 import pyttsx3
 import datetime
 import pywhatkit
@@ -37,22 +38,6 @@ def take_command():
         return ""
     return command
 
-def get_weather(city):
-    try:
-        # OpenWeatherMap API endpoint for current weather
-        url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHERMAP_API_KEY}'
-        response = requests.get(url)
-        weather_data = response.json()
-
-        # Extract relevant weather information
-        description = weather_data['weather'][0]['description']
-        temperature = weather_data['main']['temp']
-
-        talk(f'The current weather in {city} is {description}. The temperature is {temperature} degrees Celsius.')
-    except Exception as e:
-        print(f"Error fetching weather information: {e}")
-        talk("Sorry, I couldn't fetch the weather information.")
-
 
 
 def run_rose():
@@ -63,6 +48,8 @@ def run_rose():
         song = command.replace('play', '')
         talk('playing ' + song)
         pywhatkit.playonyt(song)
+    elif 'hi' in command:
+        talk('Hello! How can I assist you today?')
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%I:%M %p')
         talk('Current time is ' + time)
@@ -107,6 +94,21 @@ def run_rose():
         except Exception as e:
             print(f"Error performing calculation: {e}")
             talk("Sorry, I couldn't perform the calculation.")
+    
+    elif 'translate' in command:
+        # Extract the text to be translated
+        text_to_translate = command.replace('translate', '').strip()
+
+        # Initialize the Translator
+        translator = Translator()
+
+        # Detect the language of the input text
+        detected_language = translator.detect(text_to_translate).lang
+
+        # Translate the text to English (you can change 'en' to the desired target language)
+        translated_text = translator.translate(text_to_translate, dest='en').text
+
+        talk(f'The detected language is {detected_language}. Translated text: {translated_text}')
     elif 'joke' in command:
         talk(pyjokes.get_joke())
     elif 'stop' in command:

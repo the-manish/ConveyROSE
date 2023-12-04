@@ -15,13 +15,13 @@ Rose is a Python-based voice assistant that can perform various tasks, such as p
 
 ### Prerequisites
 
-Imports: The script starts by importing several Python libraries, including:
+####Imports: The script starts by importing several Python libraries, including:
 
-speech_recognition: For recognizing speech input.
-googletrans:The googletrans library is a Python wrapper around Google Translate, which is a machine translation service provided by Google.
-pyttsx3: A text-to-speech library for generating speech output.
-pywhatkit: A library that allows you to perform various actions, like playing YouTube videos.
-datetime: For getting the current time.
+####speech_recognition: For recognizing speech input.
+####googletrans:The googletrans library is a Python wrapper around Google Translate, which is a machine translation service provided by Google.
+####pyttsx3: A text-to-speech library for generating speech output.
+####pywhatkit: A library that allows you to perform various actions, like playing YouTube videos.
+####datetime: For getting the current time.
 wikipedia: To retrieve summaries from Wikipedia.
 webbrowser:The webbrowser module is a handy tool for simple web-related tasks in Python, such as opening URLs, displaying HTML content, and more.
 pyjokes: For telling jokes.
